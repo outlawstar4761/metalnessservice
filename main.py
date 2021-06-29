@@ -25,10 +25,12 @@ class Server(BaseHTTPRequestHandler):
     def do_POST(self):
         content_len = int(self.headers.get('Content-Length'))
         post_body = self.rfile.read(content_len).decode('utf-8')
+        print(post_body)
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
         self.end_headers()
-        response = str(self.metalCalculator.calculate_metalness_score(post_body)).encode()
+        results = self.metalCalculator.calculate_metalness_score(post_body)
+        response = str(results).encode()
         self.wfile.write(response)
 
 if __name__ == "__main__":
