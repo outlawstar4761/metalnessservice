@@ -1,0 +1,3 @@
+[submodule "MetalnessCalculator"]
+	path = MetalnessCalculator
+	url = https://github.com/outlawdesigns-io/MetalnessCalculator

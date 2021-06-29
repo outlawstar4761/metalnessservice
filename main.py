@@ -14,10 +14,10 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(bytes("<html><head><title>https://pythonbasics.org</title></head>", "utf-8"))
+        self.wfile.write(bytes("<html><head><title>How Metal is this?</title></head>", "utf-8"))
         self.wfile.write(bytes("<p>Request: %s</p>" % self.path, "utf-8"))
         self.wfile.write(bytes("<body>", "utf-8"))
-        self.wfile.write(bytes("<p>This is an example web server.</p>", "utf-8"))
+        self.wfile.write(bytes("<p>POST strings to this address to find out how metal they are!</p>", "utf-8"))
         self.wfile.write(bytes("</body></html>", "utf-8"))
     def do_POST(self):
         content_len = int(self.headers.get('Content-Length'))
@@ -26,7 +26,7 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
         self.end_headers()
-        response = str(self.metalCalculator.calculate_words_metalness()).encode()
+        response = str(self.metalCalculator.calculate_words_metalness(post_body)).encode()
         self.wfile.write(response)
 
 if __name__ == "__main__":
